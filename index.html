@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鸠摩搜书 - 专业PDF电子书搜索平台</title>
+    <meta name="description" content="鸠摩搜书提供海量PDF电子书资源搜索服务，轻松找到各类电子书籍、文献资料，免费高效的电子书搜索工具。">
+    <meta name="keywords" content="鸠摩搜书, PDF搜索, 电子书, 电子书籍, 文献搜索, 免费电子书">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Heiti SC", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #165DFF;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #165DFF;
+        }
+        
+        .search-section {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .search-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .search-desc {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-box {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            height: 56px;
+            padding: 0 20px;
+            font-size: 16px;
+            border: 2px solid #165DFF;
+            border-radius: 28px;
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+        
+        .search-input:focus {
+            box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.1);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 46px;
+            padding: 0 25px;
+            background-color: #165DFF;
+            color: white;
+            border: none;
+            border-radius: 23px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover {
+            background-color: #0E42D2;
+        }
+        
+        .hot-tags {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .hot-tags-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: white;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: #165DFF;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            padding: 30px;
+            background-color: #f9fafb;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #165DFF;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-desc {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #165DFF;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: #165DFF;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .search-title {
+                font-size: 28px;
+            }
+            
+            .search-desc {
+                font-size: 16px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="/" class="logo">
+                <div class="logo-text">鸠摩搜书</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/bestseller">热门书籍</a></li>
+                    <li><a href="/categories">分类浏览</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <div class="container">
+                <h1 class="search-title">鸠摩搜书，轻松找到您需要的PDF电子书</h1>
+                <p class="search-desc">提供海量PDF格式电子书籍、文献资料搜索服务，涵盖各类学科、领域，快速找到您需要的资源</p>
+                <div class="search-box">
+                    <form action="/search" method="get">
+                        <input type="text" class="search-input" name="q" placeholder="请输入书名、作者或关键词搜索PDF电子书..." required>
+                        <button type="submit" class="search-btn">搜索</button>
+                    </form>
+                </div>
+                <div class="hot-tags">
+                    <p class="hot-tags-title">热门搜索:</p>
+                    <div class="tags">
+                        <a href="/search?q=Python编程" class="tag">Python编程</a>
+                        <a href="/search?q=机器学习" class="tag">机器学习</a>
+                        <a href="/search?q=经济学原理" class="tag">经济学原理</a>
+                        <a href="/search?q=红楼梦" class="tag">红楼梦</a>
+                        <a href="/search?q=高等数学" class="tag">高等数学</a>
+                        <a href="/search?q=算法导论" class="tag">算法导论</a>
+                        <a href="/search?q=心理学" class="tag">心理学</a>
+                        <a href="/search?q=摄影技巧" class="tag">摄影技巧</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">为什么选择鸠摩搜书</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3 class="feature-title">海量资源</h3>
+                        <p class="feature-desc">收录数百万册PDF电子书籍，涵盖文学、科技、学术、商业等多个领域，满足不同用户需求。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">极速搜索</h3>
+                        <p class="feature-desc">采用先进的搜索引擎技术，瞬间匹配相关资源，让您快速找到所需的PDF电子书。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title">安全可靠</h3>
+                        <p class="feature-desc">严格筛选资源来源，确保内容安全可靠，为您提供优质的阅读资源和良好的搜索体验。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>鸠摩搜书</h3>
+                    <ul>
+                        <li><a href="/about">关于我们</a></li>
+                        <li><a href="/contact">联系我们</a></li>
+                        <li><a href="/jobs">加入我们</a></li>
+                        <li><a href="/feedback">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="/faq">常见问题</a></li>
+                        <li><a href="/usage">使用指南</a></li>
+                        <li><a href="/download">下载帮助</a></li>
+                        <li><a href="/copyright">版权说明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>资源分类</h3>
+                    <ul>
+                        <li><a href="/category/literature">文学小说</a></li>
+                        <li><a href="/category/science">科技理工</a></li>
+                        <li><a href="/category/business">商业经济</a></li>
+                        <li><a href="/category/philosophy">哲学社科</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 鸠摩搜书 - 专注PDF电子书搜索服务 | 免责声明：本站仅提供搜索服务，资源均来自互联网公开渠道</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
